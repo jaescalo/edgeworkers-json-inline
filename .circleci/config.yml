@@ -20,7 +20,9 @@ jobs:
           command: echo -e "[default]\nclient_secret = $CLIENT_SECRET\nhost = $HOST\naccess_token = $ACCESS_TOKEN\nclient_token = $CLIENT_TOKEN" > .edgerc
       - run:
           name: "Enable Enhanced Debugging Token"
-          command: akamai edgeworkers auth --expiry 30 --acl /json-inline-demo --network staging $HOSTNAME --edgerc /root/edgeworkers/.edgerc --accountkey $ACCOUNTKEY     
+          command: |
+          akamai ew auth help
+          akamai edgeworkers auth --expiry 30 --acl /json-inline-demo --network staging $HOSTNAME --edgerc /root/edgeworkers/.edgerc --accountkey $ACCOUNTKEY     
       - run:
           name: Create Artifact
           command: |
