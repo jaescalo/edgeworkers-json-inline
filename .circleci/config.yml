@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: akamai/edgeworkers
     environment:
-      EWVERSION: 1.05
+      EWVERSION: 1.06
       EWID: 4885
       ACCOUNTKEY: 1-6JHGX
       BUNDLENAME: jaescalo-testing.tgz
@@ -17,6 +17,9 @@ jobs:
       - run: 
           name: "Build .edgerc file"
           command: echo -e "[default]\nclient_secret = $CLIENT_SECRET\nhost = $HOST\naccess_token = $ACCESS_TOKEN\nclient_token = $CLIENT_TOKEN" > .edgerc
+      - run:
+          name: "Enable Enhanced Debugging Token"
+          command: akamai edgeworkers auth --expiry 30 --acl /json-inline-demo ${EW_DEBUG_KEY} --edgerc /root/edgeworkers/.edgerc --accountkey $ACCOUNTKEY     
       - run:
           name: Create Artifact
           command: |
@@ -33,9 +36,7 @@ jobs:
       - run:
           name: "Activation in Progress"
           command: while :; do OUTPUT=`akamai ew status $EWID --versionId $EWVERSION --edgerc /root/edgeworkers/.edgerc --accountkey $ACCOUNTKEY | awk '/PRESUBMIT|PENDING|IN_PROGRESS/ { print $4 }'`; if [ -z $OUTPUT ]; then echo Activation COMPLETE; break; else sleep 5; fi; done
-      - run:
-          name: "Enable Enhanced Debugging Token"
-          command: akamai edgeworkers auth --expiry 30 --acl /json-inline-demo ${EW_DEBUG_KEY} --edgerc /root/edgeworkers/.edgerc --accountkey $ACCOUNTKEY     
+
 
 workflows:
   build_and_test:
