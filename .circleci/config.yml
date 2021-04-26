@@ -1,0 +1,46 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: akamai/edgeworkers
+    environment:
+      EWVERSION: 0.5
+      EWID: 4885
+      ACCOUNTKEY: 1-6JHGX
+      BUNDLENAME: jaescalo-testing.tgz
+      DESCRIPTION: "Test find and replace"
+    working_directory: /root/edgeworkers
+    steps:
+      - checkout
+      - run: 
+          name: "Build .edgerc file"
+          command: echo -e "[default]\nclient_secret = $CLIENT_SECRET\nhost = $HOST\naccess_token = $ACCESS_TOKEN\nclient_token = $CLIENT_TOKEN" > .edgerc
+      - run:
+          name: Create Artifact
+          command: |
+            echo -e "{\n\t"edgeworker-version":\"$EWVERSION\",\n\t"description":\"$DESCRIPTION\"\n}" > bundle.json
+            tar -czvf ./$BUNDLENAME main.js bundle.json find-replace-stream.js
+      - store_artifacts:
+          path: jaescalo-testing.tgz
+      - run: 
+          name: Upload and Activate EW Bundle
+          command: |
+            akamai ew upload --bundle ./$BUNDLENAME $EWID --edgerc /root/edgeworkers/.edgerc --accountkey $ACCOUNTKEY
+            akamai ew activate $EWID STAGING $EWVERSION --edgerc /root/edgeworkers/.edgerc --accountkey $ACCOUNTKEY
+            akamai ew status $EWID --versionId $EWVERSION --edgerc /root/edgeworkers/.edgerc --accountkey $ACCOUNTKEY
+      - run:
+          name: "Activation in Progress"
+          command: while :; do OUTPUT=`akamai ew status $EWID --versionId $EWVERSION --edgerc /root/edgeworkers/.edgerc --accountkey $ACCOUNTKEY | awk '/PRESUBMIT|PENDING|IN_PROGRESS/ { print $4 }'`; if [ -z $OUTPUT ]; then echo Activation COMPLETE; break; else sleep 5; fi; done
+
+workflows:
+  build_and_test:
+    jobs:
+      - build:
+          context:
+            - edgerc
+          post-steps:
+            - run: 
+                name: "Remove .edgerc"
+                command: rm -r .edgerc
