@@ -41,6 +41,9 @@ workflows:
           context:
             - edgerc
           post-steps:
+            - run:
+                name: "Enable Enhanced Debugging Token"
+                command: akamai edgeworkers auth --expiry 30 --acl /json-inline-demo/ $EW_DEBUG_KEY 
             - run: 
                 name: "Remove .edgerc"
                 command: rm -r .edgerc
