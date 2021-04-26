@@ -4,11 +4,12 @@ Version: 1.1
 Purpose:  Modify an HTML streamed response by replacing a text string two times across the entire response.
 */
 
-//import { ReadableStream, WritableStream } from 'streams';
+import { ReadableStream, WritableStream } from 'streams';
 import { httpRequest } from 'http-request';
 import { createResponse } from 'create-response';
 import { TextEncoderStream, TextDecoderStream } from 'text-encode-transform';
 import { FindAndReplaceStream } from 'find-replace-stream.js';
+import { logger } from 'log';
 
 export function responseProvider (request) {
   // Get text to be searched for and new replacement text from Property Manager variables in the request object.
@@ -18,9 +19,10 @@ export function responseProvider (request) {
   const howManyReplacements = 1;
 
   return httpRequest(`${request.scheme}://${request.host}${request.url}`).then(response => {
+    logger.log(createResponse(response.status));
     return createResponse(
       response.status,
-      //response.headers,
+      response.getHeaders,
       response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new FindAndReplaceStream(tosearchfor, newtext, howManyReplacements)).pipeThrough(new TextEncoderStream())
     );
   });
