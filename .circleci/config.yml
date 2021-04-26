@@ -21,7 +21,7 @@ jobs:
       - run:
           name: "Enable Enhanced Debugging Token"
           command: |
-            akamai ew --edgerc /root/edgeworkers/.edgerc --accountkey 1-6JHGX auth --expiry 60 --acl /json-inline-demo --network staging jaescalo.test.edekey.net 
+            akamai ew --edgerc /root/edgeworkers/.edgerc --accountkey $ACCOUNTKEY auth --expiry 60 --acl /json-inline-demo --network staging $HOSTNAME || true 
       - run:
           name: Create Artifact
           command: |
