@@ -4,7 +4,7 @@ Version: 1.1
 Purpose:  Modify an HTML streamed response by replacing a text string two times across the entire response.
 */
 
-import { ReadableStream, WritableStream } from 'streams';
+//import { ReadableStream, WritableStream } from 'streams';
 import { httpRequest } from 'http-request';
 import { createResponse } from 'create-response';
 import { TextEncoderStream, TextDecoderStream } from 'text-encode-transform';
@@ -15,12 +15,12 @@ export function responseProvider (request) {
   const tosearchfor = request.getVariable('PMUSER_EWSEARCH');
   const newtext = request.getVariable('PMUSER_EWNEWTEXT');
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
-  const howManyReplacements = 3;
+  const howManyReplacements = 1;
 
   return httpRequest(`${request.scheme}://${request.host}${request.url}`).then(response => {
     return createResponse(
       response.status,
-      response.headers,
+      //response.headers,
       response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new FindAndReplaceStream(tosearchfor, newtext, howManyReplacements)).pipeThrough(new TextEncoderStream())
     );
   });
