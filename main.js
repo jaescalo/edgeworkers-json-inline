@@ -22,6 +22,8 @@ export function responseProvider (request) {
 
   async function getJSON (url) {
     const response = await httpRequest(`${url}`);
+    logger.log(response.status);
+    logger.log(response.json());
     if (response.ok) {
       logger.log(respons.json());
       return await response.json();
