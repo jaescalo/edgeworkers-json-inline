@@ -18,7 +18,7 @@ export function responseProvider (request) {
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
 
-  return httpRequest(`${request.scheme}://${request.host}/json-inline-demo`).then(response => {
+  return httpRequest(`${request.scheme}://${request.host}/inline.json`).then(response => {
     logger.log(request.url);
     return createResponse(
       response.status,
