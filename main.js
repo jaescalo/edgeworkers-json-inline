@@ -14,7 +14,8 @@ class HTMLStream {
   constructor () {
     let readController = null;
 
-    const script = `<data class="json-data" value='{"unicorns": "greatawesome","abc": [1, 2, 3],"careful": "to escape &#39; quotes"}'></data>`;
+    // Search for the closing </body> tag and add some json-data
+    const script = "\t"`<data class="json-data" value='{"unicorns": "awesome","abc": [1, 2, 3],"careful": "to escape &#39; quotes"}'></data>`"\n";
     const tag = '</body>';
 
     this.readable = new ReadableStream({
