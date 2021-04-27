@@ -13,7 +13,7 @@ import { logger } from 'log';
 export function responseProvider (request) {
   // Get text to be searched for and new replacement text from Property Manager variables in the request object.
   const tosearchfor = "</body>";
-  const newtext = `<data class="json-data" value='{"unicorns": "awesome","abc": [1, 2, 3],"careful": "to escape &#39; quotes"}'></data></body>`;
+  const newtext = '\t' + `<data class="json-data" value='{"unicorns": "awesome","abc": [1, 2, 3],"careful": "to escape &#39; quotes"}'></data>` + '\n</body>';
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
 
