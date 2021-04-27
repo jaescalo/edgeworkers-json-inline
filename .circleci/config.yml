@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: akamai/edgeworkers
     environment:
-      EWVERSION: 1.26
+      EWVERSION: 1.27
       EWID: 4885
       ACCOUNTKEY: 1-6JHGX
       HOSTNAME: staging jaescalo.test.edgekey.net
