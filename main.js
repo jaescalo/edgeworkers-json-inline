@@ -19,11 +19,11 @@ export function responseProvider (request) {
   const howManyReplacements = 1;
 
   return httpRequest(`${request.scheme}://${request.host}${request.url}`).then(response => {
-    logger.log(createResponse(response.status));
+    logger.log('JAIME');
     return createResponse(
       response.status,
-      response.getHeaders,
-      response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new FindAndReplaceStream(tosearchfor, newtext, howManyReplacements)).pipeThrough(new TextEncoderStream())
+      response.getHeaders(),
+      response.text()
     );
   });
 }
