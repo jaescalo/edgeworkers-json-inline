@@ -14,8 +14,8 @@ class HTMLStream {
   constructor () {
     let readController = null;
 
-    const script = 'great';
-    const tag = 'awesome';
+    const script = `<data class="json-data" value='{"unicorns": "greatawesome","abc": [1, 2, 3],"careful": "to escape &#39; quotes"}'></data>`;
+    const tag = '</body>';
 
     this.readable = new ReadableStream({
       start (controller) {
