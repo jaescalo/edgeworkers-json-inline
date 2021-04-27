@@ -14,8 +14,8 @@ class HTMLStream {
   constructor () {
     let readController = null;
 
-    const script = 'awesome';
-    const tag = 'great';
+    const script = 'great';
+    const tag = 'awesome';
 
     this.readable = new ReadableStream({
       start (controller) {
