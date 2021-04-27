@@ -50,7 +50,10 @@ class HTMLStream {
 
 export function responseProvider (request) {
   return httpRequest(`${request.scheme}://${request.host}${request.url}`).then(response => {
+    logger.log(request);
     logger.log(response.text());
+    logger.log(response.json());
+    logger.log(response.body);
     return createResponse(
       response.status,
       response.headers,
