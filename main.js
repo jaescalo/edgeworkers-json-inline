@@ -4,7 +4,7 @@ Version: 1.1
 Purpose:  Modify an HTML streamed response by replacing a text string two times across the entire response.
 */
 
-//import { ReadableStream, WritableStream } from 'streams';
+import { ReadableStream, WritableStream } from 'streams';
 import { httpRequest } from 'http-request';
 import { createResponse } from 'create-response';
 import { TextEncoderStream, TextDecoderStream } from 'text-encode-transform';
