@@ -18,12 +18,16 @@ export function responseProvider (request) {
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
 
-  return httpRequest('https://jaescalo.test.edgekey.net/inline.json').then(response => {
-    logger.log('JAIME E');
-    return createResponse(
-      response.status,
-      response.getHeaders(),
-      response.json()
-    );
-  });
+  let url = 'https://jaescalo.test.edgekey.net/inline.json';
+
+  async function getJSON (url) {
+    const response = await httpRequest(`${url}`);
+    if (response.ok) {
+      logger.log(respons.json());
+      return await response.json();
+    } else {
+      return { error: `Failed to return ${url}` };
+    }
+  }
+  
 }
