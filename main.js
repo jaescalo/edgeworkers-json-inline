@@ -14,8 +14,7 @@ class HTMLStream {
   constructor () {
     let readController = null;
 
-    // Search for the closing </body> tag and add some json-data
-    const script = `<data class="json-data" value='{"unicorns": "awesome","abc": [1, 2, 3],"careful": "to escape &#39; quotes"}'></data>`;
+    const script = `<data class="json-data" value='{"unicorns": "greatawesome","abc": [1, 2, 3],"careful": "to escape &#39; quotes"}'></data>`;
     const tag = '</body>';
 
     this.readable = new ReadableStream({
@@ -52,7 +51,7 @@ export function responseProvider (request) {
   return httpRequest(`${request.scheme}://${request.host}/json-inline-demo/index.html`).then(response => {
     return createResponse(
       response.status,
-      response.getHeaders(),
+      response.headers,
       response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new HTMLStream()).pipeThrough(new TextEncoderStream())
     );
   });
