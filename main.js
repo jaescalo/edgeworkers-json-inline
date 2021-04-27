@@ -9,7 +9,7 @@ import { createResponse } from 'create-response';
 import { TextEncoderStream, TextDecoderStream } from 'text-encode-transform';
 import { FindAndReplaceStream } from 'find-replace-stream.js';
 import { logger } from 'log';
-import * as inline from './data/inline.json';
+import inline from './data/inline.json';
 
 const inlineJson = inline;
 logger.log(inlineJson);
