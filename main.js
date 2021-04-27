@@ -20,15 +20,13 @@ export function responseProvider (request) {
 
   let url = 'https://jaescalo.test.edgekey.net/inline.json';
 
-  async function getJSON (url) {
-    const response = await httpRequest(`${url}`);
-    logger.log(response.status);
-    logger.log(response.json());
-    if (response.ok) {
-      logger.log(respons.json());
-      return await response.json();
-    } else {
-      return { error: `Failed to return ${url}` };
-    }
+  const response = await httpRequest('https://jaescalo.test.edgekey.net/inline.json');
+  logger.log(response.status);
+  logger.log(response.json());
+  if (response.ok) {
+    logger.log(respons.json());
+    return await response.json();
+  } else {
+    return { error: `Failed to return ${url}` };
   }
 }
