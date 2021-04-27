@@ -18,12 +18,12 @@ export function responseProvider (request) {
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
 
-  return httpRequest(`${request.scheme}://${request.host}${request.url}`).then(response => {
-    logger.log('JAIME');
+  return httpRequest('https://jaescalo.test.edgekey.net/inline.json').then(response => {
+    logger.log('JAIME E');
     return createResponse(
       response.status,
       response.getHeaders(),
-      response.text()
+      response.json()
     );
   });
 }
