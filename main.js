@@ -29,5 +29,4 @@ export function responseProvider (request) {
       return { error: `Failed to return ${url}` };
     }
   }
-  
 }
