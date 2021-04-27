@@ -1,6 +1,7 @@
 # My Exceptions
 demo_site_data/
 .DS_Store
+*.txt
 
 # Logs
 logs
