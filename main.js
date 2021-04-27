@@ -48,8 +48,9 @@ class HTMLStream {
   }
 }
 
+// When NetStorage is in use request.url = /cpcode/any-fwd-path-rewrites/actual-url
 export function responseProvider (request) {
-  return httpRequest(`${request.scheme}://${request.host}${request.url}`).then(response => {
+  return httpRequest(`${request.scheme}://${request.host}/json-inline-demo`).then(response => {
     logger.log(request.url);
     logger.log(response.text());
     logger.log(response.json());
