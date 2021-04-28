@@ -13,7 +13,7 @@ import { logger } from 'log';
 const endPoint = '/inline.json';
 
 async function getJSON() {
-  const response = await httpRequest('https://jaescalo.test.edgekey.net/inline.json')
+  const response = await httpRequest('https://jaescalo.test.edgekey.net/inline.json');
   if (response.ok) {
       return await response.text();
   } else {
@@ -26,8 +26,8 @@ export async function responseProvider (request) {
   const tosearchfor = "</body>";
 
   const newtext = getJSON();
-  await Promise.resolve(newtext);
-  logger.log(newtext); 
+  newtext2 = await Promise.resolve(newtext);
+  logger.log(newtext2); 
 
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
@@ -36,7 +36,7 @@ export async function responseProvider (request) {
     return createResponse(
       response.status,
       response.headers,
-      response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new FindAndReplaceStream(tosearchfor, newtext, howManyReplacements)).pipeThrough(new TextEncoderStream())
+      response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new FindAndReplaceStream(tosearchfor, newtext2, howManyReplacements)).pipeThrough(new TextEncoderStream())
     );
   });
 }
