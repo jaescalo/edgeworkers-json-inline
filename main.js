@@ -27,7 +27,9 @@ export async function responseProvider (request) {
 
   const newtext = await Promise.resolve(getJSON());
 
-  const toreplacewith = "\t" + `<data class="json-data" value=` + newtext + "></data>\n</body>"
+  logger.log(newtext);
+
+  const toreplacewith = "\t" + `<data class="json-data" value=` + newtext + "></data>\n</body>";
 
   logger.log(toreplacewith); 
 
