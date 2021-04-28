@@ -25,9 +25,11 @@ export async function responseProvider (request) {
   // Get text to be searched for and new replacement text from Property Manager variables in the request object.
   const tosearchfor = "</body>";
 
-  const newtext = getJSON();
-  const newtext2 = await Promise.resolve(newtext);
-  logger.log(newtext2); 
+  const newtext = await Promise.resolve(getJSON());
+
+  const toreplacewith = "\t" + `<data class="json-data" value=` + newtext + "></data>\n</body>"
+
+  logger.log(toreplacewith); 
 
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
@@ -36,7 +38,7 @@ export async function responseProvider (request) {
     return createResponse(
       response.status,
       response.headers,
-      response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new FindAndReplaceStream(tosearchfor, newtext2, howManyReplacements)).pipeThrough(new TextEncoderStream())
+      response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new FindAndReplaceStream(tosearchfor, toreplacewith, howManyReplacements)).pipeThrough(new TextEncoderStream())
     );
   });
 }
