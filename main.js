@@ -15,7 +15,7 @@ const endPoint = '/inline.json';
 async function getJSON (url) {
   const response = await httpRequest(`${request.scheme}://${request.host}/inline.json`);
   if (response.ok) {
-    return await response.json().then(body => {logger.log(body)});
+    return await response.json();
   } else {
     return { error: `Failed to return ${url}` };
   }
@@ -25,6 +25,10 @@ export function responseProvider (request) {
   // Get text to be searched for and new replacement text from Property Manager variables in the request object.
   const tosearchfor = "</body>";
   const newtext = getJSON(endPoint)
+
+  httpRequest('https://jaescalo.test.edgekey.net/inline.json')
+    .then(response => response.text())
+    .then(data => logger.log(data));
 
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
