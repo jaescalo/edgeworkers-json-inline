@@ -24,11 +24,18 @@ async function getJSON (url) {
 export function responseProvider (request) {
   // Get text to be searched for and new replacement text from Property Manager variables in the request object.
   const tosearchfor = "</body>";
-  const newtext = getJSON(endPoint) + "</body>";
+  const newtext = getJSON(endPoint)
+    .then(response => response.json())
+    .then(body => {logger.log(body);
+
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
 
   logger.log(JSON.stringify(newtext));
+
+
+  const endPointResult2 = getJSON(endPoint2).then(json => { result.endPoint2 = json; });
+
 
   return httpRequest(`${request.scheme}://${request.host}/json-inline-demo/index.html`).then(response => {
     logger.log(request.url);
