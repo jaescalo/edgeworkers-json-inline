@@ -9,17 +9,29 @@ import { createResponse } from 'create-response';
 import { TextEncoderStream, TextDecoderStream } from 'text-encode-transform';
 import { FindAndReplaceStream } from 'find-replace-stream.js';
 import { logger } from 'log';
-import inline from './data/inline.json';
 
-const inlineJson = inline;
-logger.log(inlineJson);
+const endpPoint = '/inline.json';
+
+async function getJSON (url) {
+  const response = await httpRequest(`${url}`);
+  if (response.ok) {
+    return await response.json();
+  } else {
+    return { error: `Failed to return ${url}` };
+  }
+}
 
 export function responseProvider (request) {
   // Get text to be searched for and new replacement text from Property Manager variables in the request object.
   const tosearchfor = "</body>";
-  const newtext = '\t' + `<data class="json-data" value='` + inlineJson + '></data>\n</body>';
+  const newtext = getJSON(endPoint).then(json => { result.endPoint = json; });
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
+
+  // Wait for all requests to complete.
+  await Promise.all([newtext]);
+
+  logger.log(JSON.stringify(newtext));
 
   return httpRequest(`${request.scheme}://${request.host}/json-inline-demo/index.html`).then(response => {
     logger.log(request.url);
