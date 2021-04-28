@@ -3,9 +3,9 @@ Demo for inlining NetStorage hosted JSON in HTML with Akamai EdgeWorkers
 
 *Keyword(s):* response-provider, api-orchestration, circleci<br>
 
-This example demonstrates how EdgeWorkers can be used to merge an internal call to Akamai NetStorage to retrieve some data and inline it into the HTML for the final response to the user. 
+This example demonstrates how EdgeWorkers can be used to merge an internal call to Akamai NetStorage to retrieve some data and inline it into the HTML for the final response to the user. This example is based on the [find-replace-stream](https://github.com/akamai/edgeworkers-examples/tree/master/edgeworkers/libraries/find-replace-stream) use-case in the official Akamai repository.
 
-This EdgeWorker fetches (`httpRequest` function) the contents of a file hosted in NetStorage. In this use-case the content is a JSON string, however it will be treated as a string and not as a JSON object. 
+This EdgeWorker fetches (`httpRequest` function) the contents of a file hosted in NetStorage. The Akamai property is configured to route the request to NetStorage by using the same hostname from the original request.In this use-case the content is a JSON string, however it will be treated as a string and not as a JSON object. 
 
 `{"unicorns": "awesome", "abc": [4, 5, 6], "careful": "to escape &#39; quotes"}`
 

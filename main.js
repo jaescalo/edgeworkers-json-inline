@@ -26,18 +26,17 @@ export async function responseProvider (request) {
   // Get text to be searched for and new replacement text from Property Manager variables in the request object.
   const tosearchfor = "</body>";
 
+  // Text from the JSON file hosted in NetStorage
   const newtext = await Promise.resolve(getJSON());
-
   logger.log(newtext);
 
+  // Text for the replacement
   const toreplacewith = "\t" + `<data class="json-data" value='` + newtext + "'></data>\n</body>";
-
-  logger.log(toreplacewith); 
 
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
 
-  return httpRequest(`${request.scheme}://${request.host}/json-inline-demo/index.html`).then(response => {
+  return httpRequest(htmlEndPoint).then(response => {
     return createResponse(
       response.status,
       response.headers,
