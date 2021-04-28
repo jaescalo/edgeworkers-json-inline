@@ -10,7 +10,7 @@ import { TextEncoderStream, TextDecoderStream } from 'text-encode-transform';
 import { FindAndReplaceStream } from 'find-replace-stream.js';
 import { logger } from 'log';
 
-const endpPoint = '/inline.json';
+const endPoint = '/inline.json';
 
 async function getJSON (url) {
   const response = await httpRequest(`${url}`);
