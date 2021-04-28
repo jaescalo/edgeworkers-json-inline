@@ -29,7 +29,7 @@ export async function responseProvider (request) {
 
   logger.log(newtext);
 
-  const toreplacewith = "\t" + `<data class="json-data" value=` + newtext + "></data>\n</body>";
+  const toreplacewith = "\t" + `<data class="json-data" value='` + newtext + "'></data>\n</body>";
 
   logger.log(toreplacewith); 
 
