@@ -13,9 +13,9 @@ import { logger } from 'log';
 const endPoint = '/inline.json';
 
 async function getJSON (url) {
-  const response = await httpRequest(`${url}`);
+  const response = await httpRequest(`${request.scheme}://${request.host}/inline.json`);
   if (response.ok) {
-    return await response.json();
+    return await response.json().then(body => {logger.log(body)});
   } else {
     return { error: `Failed to return ${url}` };
   }
@@ -25,16 +25,11 @@ export function responseProvider (request) {
   // Get text to be searched for and new replacement text from Property Manager variables in the request object.
   const tosearchfor = "</body>";
   const newtext = getJSON(endPoint)
-    .then(response => response.json())
-    .then(body => {logger.log(body)});
 
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
 
-  logger.log(JSON.stringify(newtext));
-
   return httpRequest(`${request.scheme}://${request.host}/json-inline-demo/index.html`).then(response => {
-    logger.log(request.url);
     return createResponse(
       response.status,
       response.headers,
