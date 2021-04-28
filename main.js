@@ -33,10 +33,6 @@ export function responseProvider (request) {
 
   logger.log(JSON.stringify(newtext));
 
-
-  const endPointResult2 = getJSON(endPoint2).then(json => { result.endPoint2 = json; });
-
-
   return httpRequest(`${request.scheme}://${request.host}/json-inline-demo/index.html`).then(response => {
     logger.log(request.url);
     return createResponse(
