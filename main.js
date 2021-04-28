@@ -21,7 +21,7 @@ async function getJSON() {
   }
 }
 
-async export function responseProvider (request) {
+export async function responseProvider (request) {
   // Get text to be searched for and new replacement text from Property Manager variables in the request object.
   const tosearchfor = "</body>";
 
