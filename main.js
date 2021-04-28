@@ -1,7 +1,7 @@
 /*
 (c) Copyright 2020 Akamai Technologies, Inc. Licensed under Apache 2 license.
 Version: 1.1
-Purpose:  Modify an HTML streamed response by replacing a text string two times across the entire response.
+Purpose:  Modify an HTML streamed response by replacing a text string across the entire response. The replacement string is stored in NetStorage.
 */
 
 import { httpRequest } from 'http-request';

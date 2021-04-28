@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: akamai/edgeworkers
     environment:
-      EWVERSION: 1.50
+      EWVERSION: 1.51
       EWID: 4885
       BUNDLENAME: ew-json-inline.tgz
       DESCRIPTION: "JSON inline with streamed find and replace"
@@ -22,7 +22,7 @@ jobs:
             echo -e "{\n\t"edgeworker-version":\"$EWVERSION\",\n\t"description":\"$DESCRIPTION\"\n}" > bundle.json
             tar -czvf ./$BUNDLENAME main.js bundle.json find-replace-stream.js
       - store_artifacts:
-          path: ew-json-inline.tgz.tgz
+          path: ew-json-inline.tgz
       - run: 
           name: Upload and Activate EW Bundle
           command: |
