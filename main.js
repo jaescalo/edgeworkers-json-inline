@@ -26,7 +26,7 @@ export async function responseProvider (request) {
   const tosearchfor = "</body>";
 
   const newtext = getJSON();
-  newtext2 = await Promise.resolve(newtext);
+  const newtext2 = await Promise.resolve(newtext);
   logger.log(newtext2); 
 
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
