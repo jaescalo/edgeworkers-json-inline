@@ -6,10 +6,10 @@ jobs:
     docker:
       - image: akamai/edgeworkers
     environment:
-      EWVERSION: 1.48
+      EWVERSION: 1.49
       EWID: 4885
       ACCOUNTKEY: 1-6JHGX
-      HOSTNAME: staging jaescalo.test.edgekey.net
+      HOSTNAME: jaescalo.test.edgekey.net
       BUNDLENAME: jaescalo-testing.tgz
       DESCRIPTION: "Test find and replace"
     working_directory: /root/edgeworkers
