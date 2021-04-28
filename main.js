@@ -11,9 +11,10 @@ import { FindAndReplaceStream } from 'find-replace-stream.js';
 import { logger } from 'log';
 
 const endPoint = '/inline.json';
+const htmlEndPoint = '/json-inline-demo/index.html';
 
 async function getJSON() {
-  const response = await httpRequest('https://jaescalo.test.edgekey.net/inline.json');
+  const response = await httpRequest(`${request.scheme}://${request.host}/inline.json`);
   if (response.ok) {
       return await response.text();
   } else {
