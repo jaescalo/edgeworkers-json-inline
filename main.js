@@ -26,7 +26,7 @@ export function responseProvider (request) {
   const tosearchfor = "</body>";
   const newtext = getJSON(endPoint)
     .then(response => response.json())
-    .then(body => {logger.log(body);
+    .then(body => {logger.log(body)});
 
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
