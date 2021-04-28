@@ -28,9 +28,6 @@ export function responseProvider (request) {
   // Set to 0 to replace all, otherwise a number larger than 0 to limit replacements
   const howManyReplacements = 1;
 
-  // Wait for all requests to complete.
-  await Promise.all([newtext]);
-
   logger.log(JSON.stringify(newtext));
 
   return httpRequest(`${request.scheme}://${request.host}/json-inline-demo/index.html`).then(response => {
