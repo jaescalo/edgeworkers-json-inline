@@ -13,12 +13,24 @@ In the EdgeWorker the above string is assembled to form a data class json-data t
 
 `<data class="json-data" value='{"unicorns": "awesome", "abc": [4, 5, 6], "careful": "to escape &#39; quotes"}'></data>`
 
-CircleCI automates the deployment to staging for this EdgeWorker on each `git commit`. The asociated configuration is in the `.circleci.yml` file.
-
 ## Considerations when using NetStorage
 
 - When NetStorage is used as an origin a path rewrite occurs to prepend /cpcode/ which the EdgeWorker will use by default. 
 - NetStorage is for static assets so a mininmum caching time of 10 min is required. This is configurable in the Akamai property. 
+
+## CircleCI
+CircleCI automates the deployment to staging for this EdgeWorker on each `git commit`. The asociated configuration is in the `.circleci.yml` file.
+[CircleCI Contexts](https://circleci.com/docs/2.0/contexts/]) is are used to pass on sensitive information in variables to the configuration file `.circleci.yml`. The following variables should be managed under CirecleCI Contexts for this example. 
+
+### Account Info Variables
+- $ACCOUNTKEY: Optional. Used to switch between accounts. If not needed remove all associations and the `--accountkey` flag from the commands.
+- $HOSTNAME: Hostname associated to the property running EdegeWorkers. Used to create the enhanced debugging token.
+
+### Akamai API Credential Variables
+- $ACCESS_TOKEN
+- $HOST
+- $CLIENT_SECRET
+- $CLIENT_TOKEN
 
 ## Similar Uses
 

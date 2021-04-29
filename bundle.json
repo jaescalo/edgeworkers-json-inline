@@ -1,4 +1,9 @@
 {
-    "edgeworker-version": "2.0",
-    "description" : "Charter JSON Inlining Demo"
+    "edgeworker-version": "EWVERSION",
+    "bundle-version" : 5,
+    "api-version" : "1.0",
+    "description" : "DESCRIPTION",
+    "misc" : {
+        "author" : "Jaime"
+     }
 }
