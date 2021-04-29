@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: akamai/edgeworkers
     environment:
-      EWVERSION: 1.51
+      EWVERSION: 1.52
       EWID: 4885
       BUNDLENAME: ew-json-inline.tgz
       DESCRIPTION: "JSON inline with streamed find and replace"
