@@ -18,8 +18,8 @@ In the EdgeWorker the above string is assembled to form a data class json-data t
 - When NetStorage is used as an origin a path rewrite occurs to prepend /cpcode/ which the EdgeWorker will use by default. 
 - NetStorage is for static assets so a mininmum caching time of 10 min is required. This is configurable in the Akamai property. 
 
-## CircleCI
-CircleCI automates the deployment to staging for this EdgeWorker on each `git commit`. The asociated configuration is in the `.circleci.yml` file.
+## CircleCI (Optional)
+CircleCI can automate the deployment to staging for this EdgeWorker on each `git commit`. The asociated configuration is in the `.circleci.yml` file.
 [CircleCI Contexts](https://circleci.com/docs/2.0/contexts/]) is are used to pass on sensitive information in variables to the configuration file `.circleci.yml`. The following variables should be managed under CirecleCI Contexts for this example. 
 
 ### Account Info Variables
