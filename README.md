@@ -19,7 +19,7 @@ In the EdgeWorker the above string is assembled to form a data class json-data t
 - NetStorage is for static assets so a mininmum caching time of 10 min is required. This is configurable in the Akamai property. 
 
 ## CircleCI (Optional)
-Based on on the [Turbo Akamai Edgeworkers](https://github.com/jaescalo/Turbo-Akamai-EdgeWorkers) project. CircleCI can automate the deployment to staging for this EdgeWorker on each `git commit`. The asociated configuration is in the `.circleci.yml` file.
+Based on the [Turbo Akamai Edgeworkers](https://github.com/jaescalo/Turbo-Akamai-EdgeWorkers) project. CircleCI can automate the deployment to staging for this EdgeWorker on each `git commit`. The asociated configuration is in the `.circleci.yml` file.
 [CircleCI Contexts](https://circleci.com/docs/2.0/contexts/]) is are used to pass on sensitive information in variables to the configuration file `.circleci.yml`. The following variables should be managed under CirecleCI Contexts for this example. 
 
 ### Account Info Variables
