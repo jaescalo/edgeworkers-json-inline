@@ -41,6 +41,7 @@ export async function responseProvider (request) {
         
     var responseHeaders = response.getHeaders();
     delete responseHeaders['content-length'];
+    logger.log(responseHeaders);
 
     return createResponse(
       response.status,
