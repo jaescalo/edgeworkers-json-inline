@@ -7,14 +7,14 @@ parameters:
     default: false
   production:
     type: boolean
-    default: true
+    default: false
 
 jobs:
   build:
     docker:
       - image: akamai/edgeworkers
     environment:
-      EWVERSION: 1.53
+      EWVERSION: 1.54
       EWID: 4885
       BUNDLENAME: ew-json-inline.tgz
       DESCRIPTION: "JSON inline with streamed find and replace"

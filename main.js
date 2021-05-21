@@ -39,7 +39,7 @@ export async function responseProvider (request) {
   return httpRequest(htmlEndPoint).then(response => {
     return createResponse(
       response.status,
-      response.headers,
+      response.getHeaders(),
       response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new FindAndReplaceStream(tosearchfor, toreplacewith, howManyReplacements)).pipeThrough(new TextEncoderStream())
     );
   });
