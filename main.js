@@ -38,14 +38,9 @@ export async function responseProvider (request) {
   const howManyReplacements = 1;
 
   return httpRequest(htmlEndPoint).then(response => {
-        
-    var responseHeaders = response.getHeaders();
-    delete responseHeaders['content-length'];
-    logger.log(responseHeaders);
-
     return createResponse(
       response.status,
-      responseHeaders,
+      response.headers,
       response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new FindAndReplaceStream(tosearchfor, toreplacewith, howManyReplacements)).pipeThrough(new TextEncoderStream())
     );
   });
