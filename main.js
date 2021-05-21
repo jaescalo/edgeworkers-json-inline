@@ -40,7 +40,7 @@ export async function responseProvider (request) {
   return httpRequest(htmlEndPoint).then(response => {
         
     var responseHeaders = response.getHeaders();
-    delete responseHeaders['content-length’];
+    delete responseHeaders['content-length'];
 
     return createResponse(
       response.status,
