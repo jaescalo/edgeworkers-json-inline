@@ -13,6 +13,7 @@ import { logger } from 'log';
 const jsonEndPoint = '/inline.json';
 const htmlEndPoint = '/json-inline-demo/index.html';
 
+// Fetch JSON from NetStorage (configured as an origin in the property).
 async function getJSON() {
   const response = await httpRequest(jsonEndPoint);
   if (response.ok) {
